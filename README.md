@@ -34,6 +34,7 @@ We release **Qwen3-TTS**, a series of powerful speech generation capabilities de
     - [Voice Design then Clone](#voice-design-then-clone)
     - [Tokenizer Encode and Decode](#tokenizer-encode-and-decode)
   - [Launch Local Web UI Demo](#launch-local-web-ui-demo)
+    - [Kokoro-82M Alternative (CPU-friendly)](#kokoro-82m-alternative-cpu-friendly)
   - [DashScope API Usage](#dashscope-api-usage)
 - [vLLM Usage](#vllm-usage)
 - [Fine Tuning](#fine-tuning)
@@ -417,6 +418,17 @@ qwen-tts-demo Qwen/Qwen3-TTS-12Hz-1.7B-Base \
 ```
 
 And open `https://<your-ip>:8000` to experience it. If your browser shows a warning, it’s expected for self-signed certificates. For production, use a real certificate.
+
+#### Kokoro-82M Alternative (CPU-friendly)
+
+If you want a much lighter, CPU-friendly demo and do not need voice cloning or voice design, this checkout also includes a standalone Kokoro-82M app:
+
+```bash
+uv pip install --python .venv/bin/python -r requirements-kokoro.txt
+.venv/bin/python kokoro_demo.py --device cpu --threads 4
+```
+
+Then open `http://127.0.0.1:7860`. Portuguese (Brazil) is the default; the UI also supports US/UK English, Spanish, French, Italian, and Hindi. Kokoro uses fixed voices and does not clone voices. See [`KOKORO.md`](KOKORO.md) for voices, flags, and performance notes.
 
 ### DashScope API Usage
 
