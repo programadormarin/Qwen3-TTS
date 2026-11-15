@@ -1,0 +1,40 @@
+# Optional Chatterbox backend for chatterbox_demo.py.
+#
+# Tested on macOS x86_64 (Intel). Chatterbox 0.1.7's own metadata pins
+# torch==2.6.0 / transformers==5.2.0, but PyTorch stopped publishing macOS
+# x86_64 wheels after 2.2.2. This file pins the last Intel-compatible stack.
+# On Apple Silicon, Linux, or Windows, create a separate venv and install
+# chatterbox-tts normally instead of using this file.
+#
+# Install the compatible dependencies first:
+#   uv venv .venv-chatterbox --python 3.12
+#   uv pip install --python .venv-chatterbox/bin/python -r requirements-chatterbox.txt
+#
+# Chatterbox itself is installed without dependencies because its metadata
+# would pull torch 2.6.0, which has no Intel macOS wheel:
+#   uv pip install --python .venv-chatterbox/bin/python --no-deps chatterbox-tts==0.1.7
+
+torch==2.2.2
+torchaudio==2.2.2
+numpy==1.26.4
+transformers==4.46.3
+tokenizers==0.20.3
+huggingface-hub==0.36.2
+diffusers==0.29.0
+safetensors==0.5.3
+librosa==0.10.2.post1
+numba==0.62.1
+llvmlite==0.45.1
+scipy==1.13.1
+scikit-learn==1.6.1
+pandas==3.0.6
+setuptools==75.8.0
+s3tokenizer==0.3.0
+resemble-perth==1.0.1
+conformer==0.3.2
+spacy-pkuseg==1.0.2
+pykakasi==2.3.0
+gradio==6.17.3
+soundfile==0.14.0
+pyloudnorm==0.2.0
+omegaconf==2.4.0

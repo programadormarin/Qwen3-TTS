@@ -35,6 +35,7 @@ We release **Qwen3-TTS**, a series of powerful speech generation capabilities de
     - [Tokenizer Encode and Decode](#tokenizer-encode-and-decode)
   - [Launch Local Web UI Demo](#launch-local-web-ui-demo)
     - [Kokoro-82M Alternative (CPU-friendly)](#kokoro-82m-alternative-cpu-friendly)
+    - [Chatterbox Alternative (voice cloning)](#chatterbox-alternative-voice-cloning)
   - [DashScope API Usage](#dashscope-api-usage)
 - [vLLM Usage](#vllm-usage)
 - [Fine Tuning](#fine-tuning)
@@ -429,6 +430,21 @@ uv pip install --python .venv/bin/python -r requirements-kokoro.txt
 ```
 
 Then open `http://127.0.0.1:7860`. Portuguese (Brazil) is the default; the UI also supports US/UK English, Spanish, French, Italian, and Hindi. Kokoro uses fixed voices and does not clone voices. See [`KOKORO.md`](KOKORO.md) for voices, flags, and performance notes.
+
+#### Chatterbox Alternative (voice cloning)
+
+If you want zero-shot voice cloning with a multilingual model that includes Portuguese, this checkout also includes a standalone Chatterbox app. Chatterbox has conflicting PyTorch/Transformers pins, so it needs its own environment; do not install it into `.venv`.
+
+On Intel macOS, use the tested compatibility stack:
+
+```bash
+uv venv .venv-chatterbox --python 3.12
+uv pip install --python .venv-chatterbox/bin/python -r requirements-chatterbox.txt
+uv pip install --python .venv-chatterbox/bin/python --no-deps chatterbox-tts==0.1.7
+.venv-chatterbox/bin/python chatterbox_demo.py --device cpu --threads 4
+```
+
+Then open `http://127.0.0.1:7861`. Portuguese is the default (`pt`); upload a clean 6–20 second reference clip to clone a voice, or leave it empty for the built-in voice. On Apple Silicon, Linux, or Windows, install the official `chatterbox-tts` package in a separate venv instead. See [`CHATTERBOX.md`](CHATTERBOX.md) for first-run downloads, flags, CPU timings, and the Intel macOS compatibility notes.
 
 ### DashScope API Usage
 
